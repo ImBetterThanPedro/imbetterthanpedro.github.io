@@ -39,7 +39,7 @@ body, html {
     width: 0%;
     background-color: #00ff7f;
     border-radius: 6px;
-    animation: fillBar 2.70s forwards ease-out; /* Animation de remplissage de 1.70s */
+    animation: fillBar 1.70s forwards ease-out; /* Animation de remplissage de 1.70s */
 }
 
 @keyframes fillBar {
@@ -190,9 +190,7 @@ body, html {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-/* --- Styles Spécifiques Pieds2Marceau --- */
-
-/* Background Image pour Pieds2Marceau */
+/* --- Styles Spécifiques Pieds2Marceau (inchangés) --- */
 #pieds2marceau .special-background {
     position: fixed;
     top: 0;
@@ -205,55 +203,72 @@ body, html {
     background-position: center;
 }
 
-/* Cacher le fond par défaut et l'overlay si la tab spéciale est active */
 #pieds2marceau.active ~ #default-video-bg {
     display: none;
 }
 
-/* Cadre Vidéo (Carré noir centré) */
 .video-frame {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px; /* Taille initiale du carré */
+    width: 300px;
     height: 300px;
     background-color: #000000; 
-    border: 8px solid #00ff7f; /* Bordures épaisses et colorées */
+    border: 8px solid #00ff7f;
     box-shadow: 0 0 20px rgba(0, 255, 127, 0.5); 
     overflow: hidden;
     z-index: 100;
-    /* Transition de zoom de 10s */
     transition: width 10s ease-in-out, height 10s ease-in-out, border 0.5s, box-shadow 0.5s; 
 }
 
-/* Vidéo Rick - Démarrer muet et cachée (opacity: 0) */
 .rick-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0; 
-    transition: opacity 1s ease 0.5s; /* Apparition après un petit délai */
+    transition: opacity 1s ease 0.5s; 
 }
 
-/* Classe pour l'agrandissement (10s) */
 .video-frame.fullscreen-zoom {
     width: 100vw;
     height: 100vh;
-    border: none; /* Enlever les bordures en plein écran */
+    border: none;
     box-shadow: none;
 }
 
-/* Rendre la vidéo visible et démarrer la lecture */
 .rick-video.play-visible {
     opacity: 1;
 }
 
 
-/* --- Nouveaux Styles pour l'onglet Credits --- */
+/* --- Nouveaux Styles pour l'onglet Credits (Révision) --- */
+
+/* Force un fond noir et retire le fond vidéo par défaut */
+#credits.active ~ #default-video-bg {
+    background-color: #000000;
+    display: block;
+}
+#credits.active ~ #default-video-bg .video-overlay {
+    background-color: #000000;
+    opacity: 1;
+}
+#credits.active ~ #default-video-bg video {
+    display: none;
+}
+
+
+/* Titre de la page "Credits" */
+.page-title-credits {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
 .credits-content {
-    display: flex;
-    flex-direction: column;
+    /* Retirer le flex-direction: column pour que le content centre juste le credit-container */
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -265,21 +280,22 @@ body, html {
     justify-content: center;
     align-items: center;
     width: 90%;
-    max-width: 900px; /* Limite la largeur pour une meilleure lisibilité */
-    height: 50vh; /* Hauteur relative */
-    padding: 20px;
-    margin-top: 50px;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond subtil */
+    max-width: 900px;
+    height: 350px; /* Hauteur fixe pour le centrage des éléments */
+    padding: 30px;
+    margin-top: 0; /* Centrage vertical automatique par .content */
+    background-color: rgba(0, 0, 0, 0.8); /* Cadre noir plus opaque */
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 30px rgba(0, 255, 127, 0.2); /* Ombre plus verte */
+    position: relative;
 }
 
 .credit-image-box {
     flex-shrink: 0;
-    width: 250px;
-    height: 250px;
+    width: 200px; /* Carré de la photo */
+    height: 200px;
     overflow: hidden;
-    border: 5px solid #00ff7f; /* Bordure épaisse pour le carré */
+    border: 5px solid #00ff7f; 
     border-radius: 5px;
     margin-right: 40px;
     box-shadow: 0 0 10px rgba(0, 255, 127, 0.8);
@@ -288,44 +304,48 @@ body, html {
 .credit-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Assure que l'image remplit le carré */
+    object-fit: cover;
     transition: opacity 0.5s ease;
 }
 
 .credit-separator {
     width: 2px;
-    height: 100%;
-    background-color: #ffffff; /* Le tiret/séparateur blanc */
+    height: 80%; /* Le tiret/séparateur blanc */
+    background-color: #ffffff; 
     margin: 0 40px;
     flex-shrink: 0;
 }
 
 .credit-details {
     flex-grow: 1;
-    max-width: 400px;
+    max-width: 450px;
     text-align: left;
-    position: relative;
     height: 100%;
-    padding-top: 20px; /* Espace pour le nom */
-    box-sizing: border-box;
+    display: flex; /* Utiliser flex pour positionner la description et le bouton */
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
 }
 
 .credit-name {
-    font-size: 2.5rem;
-    color: #00ff7f;
-    margin-bottom: 15px;
+    font-size: 2.8rem;
+    color: #ffffff; /* Nom en blanc, grand et clair */
+    text-align: center; /* Nom centré au-dessus de la description */
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .credit-description {
     font-size: 1.1rem;
     color: #cccccc;
     line-height: 1.6;
+    margin-bottom: auto; /* Pousser le bouton vers le bas */
 }
 
 .next-button {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
+    /* Bouton Next toujours en bas à droite du credit-container */
+    align-self: flex-end; /* Aligner à droite dans le flex column */
     padding: 10px 20px;
     background-color: #00ff7f;
     color: #1a1a2e;
@@ -334,6 +354,7 @@ body, html {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s;
+    margin-top: 20px;
 }
 
 .next-button:hover {
@@ -345,20 +366,16 @@ body, html {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 2.5rem;
-    }
-    .subtitle {
-        font-size: 1rem;
-    }
-    .sidebar {
-        width: 200px;
+    .page-title-credits {
+        top: 20px;
+        font-size: 3rem;
     }
     .credit-container {
         flex-direction: column;
         height: auto;
         padding: 15px;
-        margin-top: 10px;
+        margin-top: 80px; /* Espace pour le titre */
+        max-width: 95%;
     }
     .credit-image-box {
         width: 150px;
@@ -370,15 +387,17 @@ body, html {
     }
     .credit-details {
         text-align: center;
-        padding-top: 0;
         height: auto;
     }
+    .credit-name {
+        font-size: 2rem;
+    }
     .credit-description {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
     .next-button {
-        position: static;
-        margin-top: 20px;
+        align-self: center; /* Centrer sur mobile */
         width: 100%;
+        margin-top: 15px;
     }
 }

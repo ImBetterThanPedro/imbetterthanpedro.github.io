@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Éléments Pieds2Marceau
     const videoFrame = document.querySelector('.video-frame');
     const rickVideo = document.getElementById('rick-video');
-    let rickTimeout = null; // Pour stocker le timeout de retour au Hub
+    let rickTimeout = null; 
 
     // Éléments Credits
     const creditPhoto = document.getElementById('credit-photo');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fonction de réinitialisation de Pieds2Marceau
     function resetPieds2Marceau() {
-        clearTimeout(rickTimeout); // Annuler le retour au Hub
+        clearTimeout(rickTimeout);
         if (rickVideo) {
             rickVideo.pause();
             rickVideo.currentTime = 0;
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (videoFrame) {
             videoFrame.classList.remove('fullscreen-zoom');
         }
-        // Quitter le mode plein écran si actif
         if (document.fullscreenElement) {
             document.exitFullscreen();
         }
@@ -168,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 3. Retour automatique au Hub après 10s (zoom) + 2s (attente) = 12000ms
                 rickTimeout = setTimeout(() => {
                     showTab('hub'); // Retour au Hub
-                    sidebar.classList.remove('open'); // S'assurer que la sidebar est fermée
+                    sidebar.classList.remove('open');
                 }, 12000); 
 
             }, 50); 
