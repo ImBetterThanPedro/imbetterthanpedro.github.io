@@ -19,7 +19,7 @@
     </div>
 
     <div id="main-content" class="main-content-wrapper hidden">
-        <div class="video-background">
+        <div class="video-background" id="default-video-bg">
             <div class="video-overlay"></div>
             <video autoplay muted loop playsinline>
                 <source src="assets/videos/kln_background.mp4" type="video/mp4">
@@ -34,26 +34,37 @@
         <aside class="sidebar" id="sidebar">
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="#" class="nav-link" data-tab="hub">Hub</a></li> <li><a href="#" class="nav-link" data-tab="pieds2marceau">Pieds2Marceau</a></li>
+                    <li><a href="#" class="nav-link" data-tab="hub">Hub</a></li> 
+                    <li><a href="#" class="nav-link" data-tab="pieds2marceau">Pieds2Marceau</a></li>
                     <li><a href="#" class="nav-link" data-tab="credits">Credits</a></li>
                     <li><a href="#" class="nav-link" data-tab="skills-booster">Skills booster</a></li>
                 </ul>
             </nav>
         </aside>
 
-        <div class="content">
+        <div class="content" id="page-content">
             <div id="hub" class="tab-content active">
-                <h1 class="main-title">TODO LIST ULTIMATE</h1>
-                <p class="subtitle">Welcome to your main dashboard !</p>
+                <h1 class="main-title">Kaelan's Hub</h1>
+                <p class="subtitle">Welcome to your main dashboard.</p>
             </div>
-            <div id="pieds2marceau" class="tab-content hidden">
-                <h1 class="main-title">Pieds2Marceau</h1>
-                <p class="subtitle">Welcome to Pieds2Marceau section.</p>
+            
+            <div id="pieds2marceau" class="tab-content hidden special-tab">
+                <div class="special-background" id="pieds2marceau-bg"></div>
+                
+                <div class="video-frame">
+                    <video id="rick-video" class="rick-video" muted loop playsinline>
+                        <source src="assets/videos/rick.mp4" type="video/mp4"> 
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <h1 class="main-title hidden-on-special">Pieds2Marceau Activation</h1>
             </div>
+            
             <div id="credits" class="tab-content hidden">
                 <h1 class="main-title">Credits</h1>
                 <p class="subtitle">Thank you for visiting!</p>
             </div>
+            
             <div id="skills-booster" class="tab-content hidden">
                 <h1 class="main-title">Skills Booster</h1>
                 <p class="subtitle">Boost your skills here.</p>

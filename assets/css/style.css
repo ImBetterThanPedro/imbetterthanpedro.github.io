@@ -8,7 +8,7 @@ body, html {
     overflow-x: hidden;
 }
 
-/* --- Loader Styles --- */
+/* --- Loader Styles (Barre de chargement arrondie 1.7s) --- */
 .loader {
     position: fixed;
     top: 0;
@@ -25,21 +25,21 @@ body, html {
 }
 
 .loader-bar-container {
-    width: 80%; /* Largeur de la barre */
+    width: 80%;
     max-width: 400px;
-    height: 12px; /* Épaisseur de la barre */
+    height: 12px;
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px; /* Bords arrondis */
+    border-radius: 6px;
     overflow: hidden;
     margin-bottom: 20px;
 }
 
 .loader-bar {
     height: 100%;
-    width: 0%; /* Commence vide */
-    background-color: #00ff7f; /* Couleur vive de la barre */
+    width: 0%;
+    background-color: #00ff7f;
     border-radius: 6px;
-    animation: fillBar 1.70s forwards ease-out; /* Animation de remplissage */
+    animation: fillBar 1.70s forwards ease-out; /* Animation de remplissage de 1.70s */
 }
 
 @keyframes fillBar {
@@ -85,15 +85,15 @@ body, html {
     z-index: -1;
 }
 
-/* Video Element */
-video {
+/* Video Element (Default Background) */
+.video-background video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* CHANGEMENT ICI : pour "dézoomer" */
-    background-color: #000; /* Fond noir pour les barres si object-fit: contain */
+    object-fit: contain; /* Dézoom de la vidéo */
+    background-color: #000;
 }
 
-/* --- Menu Toggle (Hamburger) --- */
+/* --- Menu Toggle (Hamburger) & Sidebar Styles (inchangés) --- */
 .menu-toggle {
     position: fixed;
     top: 20px;
@@ -112,7 +112,6 @@ video {
     color: #ffffff;
 }
 
-/* --- Sidebar Styles --- */
 .sidebar {
     position: fixed;
     top: 0;
@@ -153,12 +152,12 @@ video {
 }
 
 .sidebar-nav .nav-link:hover,
-.sidebar-nav .nav-link.active-link { /* Nouvelle classe pour l'état actif */
+.sidebar-nav .nav-link.active-link {
     background-color: #00ff7f;
     color: #1a1a2e;
 }
 
-/* --- Content Styles (pour centrer) --- */
+/* --- Content Styles --- */
 .content {
     display: flex;
     flex-direction: column;
@@ -172,16 +171,7 @@ video {
     z-index: 10;
 }
 
-/* Tab Content */
-.tab-content {
-    transition: opacity 0.5s ease;
-}
-
-.tab-content.hidden {
-    display: none;
-}
-
-/* Main Title Styling - Look plus épuré */
+/* Main Title Styling */
 .main-title {
     font-size: 4rem;
     font-weight: 700;
@@ -191,7 +181,6 @@ video {
     text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
 }
 
-/* Subtitle Styling */
 .subtitle {
     font-size: 1.3rem;
     font-weight: 300;
@@ -199,6 +188,65 @@ video {
     letter-spacing: 1px;
     color: #cccccc;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Styles Spécifiques Pieds2Marceau --- */
+
+/* Background Image pour Pieds2Marceau */
+#pieds2marceau .special-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background-image: url('../images/tenebreux.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Cacher le fond par défaut et l'overlay si la tab spéciale est active */
+#pieds2marceau.active ~ #default-video-bg {
+    display: none;
+}
+
+/* Cadre Vidéo (Carré noir centré) */
+.video-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Taille initiale du carré */
+    height: 300px;
+    background-color: #000000; 
+    border: 8px solid #00ff7f; /* Bordures épaisses et colorées */
+    box-shadow: 0 0 20px rgba(0, 255, 127, 0.5); 
+    overflow: hidden;
+    z-index: 100;
+    /* Transition de zoom de 10s */
+    transition: width 10s ease-in-out, height 10s ease-in-out, border 0.5s, box-shadow 0.5s; 
+}
+
+/* Vidéo Rick - Démarrer muet et cachée (opacity: 0) */
+.rick-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; 
+    transition: opacity 1s ease 0.5s; /* Apparition après un petit délai */
+}
+
+/* Classe pour l'agrandissement (10s) */
+.video-frame.fullscreen-zoom {
+    width: 100vw;
+    height: 100vh;
+    border: none; /* Enlever les bordures en plein écran */
+    box-shadow: none;
+}
+
+/* Rendre la vidéo visible et démarrer la lecture */
+.rick-video.play-visible {
+    opacity: 1;
 }
 
 /* Responsive adjustments */
@@ -211,5 +259,9 @@ video {
     }
     .sidebar {
         width: 200px;
+    }
+    .video-frame {
+        width: 200px;
+        height: 200px;
     }
 }
