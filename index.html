@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Website</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="assets/videos/kln_background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="content">
+        <h1>Welcome to Our Modern Website</h1>
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('home')">Home</button>
+            <button class="tab-button" onclick="showTab('about')">About</button>
+            <button class="tab-button" onclick="showTab('contact')">Contact</button>
+        </div>
+        <div id="home" class="tab-content">This is the home tab content.</div>
+        <div id="about" class="tab-content" style="display:none;">This is the about tab content.</div>
+        <div id="contact" class="tab-content" style="display:none;">This is the contact tab content.</div>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
