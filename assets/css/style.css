@@ -39,7 +39,7 @@ body, html {
     width: 0%;
     background-color: #00ff7f;
     border-radius: 6px;
-    animation: fillBar 1.70s forwards ease-out; /* Animation de remplissage de 1.70s */
+    animation: fillBar 2.70s forwards ease-out; /* Animation de remplissage de 1.70s */
 }
 
 @keyframes fillBar {
@@ -93,7 +93,7 @@ body, html {
     background-color: #000;
 }
 
-/* --- Menu Toggle (Hamburger) & Sidebar Styles (inchangés) --- */
+/* --- Menu Toggle (Hamburger) & Sidebar Styles --- */
 .menu-toggle {
     position: fixed;
     top: 20px;
@@ -249,6 +249,100 @@ body, html {
     opacity: 1;
 }
 
+
+/* --- Nouveaux Styles pour l'onglet Credits --- */
+.credits-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.credit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 900px; /* Limite la largeur pour une meilleure lisibilité */
+    height: 50vh; /* Hauteur relative */
+    padding: 20px;
+    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond subtil */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.credit-image-box {
+    flex-shrink: 0;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border: 5px solid #00ff7f; /* Bordure épaisse pour le carré */
+    border-radius: 5px;
+    margin-right: 40px;
+    box-shadow: 0 0 10px rgba(0, 255, 127, 0.8);
+}
+
+.credit-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image remplit le carré */
+    transition: opacity 0.5s ease;
+}
+
+.credit-separator {
+    width: 2px;
+    height: 100%;
+    background-color: #ffffff; /* Le tiret/séparateur blanc */
+    margin: 0 40px;
+    flex-shrink: 0;
+}
+
+.credit-details {
+    flex-grow: 1;
+    max-width: 400px;
+    text-align: left;
+    position: relative;
+    height: 100%;
+    padding-top: 20px; /* Espace pour le nom */
+    box-sizing: border-box;
+}
+
+.credit-name {
+    font-size: 2.5rem;
+    color: #00ff7f;
+    margin-bottom: 15px;
+}
+
+.credit-description {
+    font-size: 1.1rem;
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+.next-button {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    padding: 10px 20px;
+    background-color: #00ff7f;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.next-button:hover {
+    background-color: #00e676;
+}
+.next-button:active {
+    transform: scale(0.98);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .main-title {
@@ -260,8 +354,31 @@ body, html {
     .sidebar {
         width: 200px;
     }
-    .video-frame {
-        width: 200px;
-        height: 200px;
+    .credit-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        margin-top: 10px;
+    }
+    .credit-image-box {
+        width: 150px;
+        height: 150px;
+        margin: 0 0 20px 0;
+    }
+    .credit-separator {
+        display: none;
+    }
+    .credit-details {
+        text-align: center;
+        padding-top: 0;
+        height: auto;
+    }
+    .credit-description {
+        margin-bottom: 50px;
+    }
+    .next-button {
+        position: static;
+        margin-top: 20px;
+        width: 100%;
     }
 }
