@@ -5,7 +5,7 @@ body, html {
     height: 100%;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    overflow-x: hidden; /* Empêche le défilement horizontal */
+    overflow-x: hidden;
 }
 
 /* --- Loader Styles --- */
@@ -15,28 +15,36 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #1a1a2e; /* Fond moderne */
+    background-color: #1a1a2e; /* Fond darkmode */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Assure qu'il est au-dessus de tout */
-    transition: opacity 0.5s ease-out; /* Transition de fondu */
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
 }
 
-.loader-spinner {
-    border: 8px solid rgba(255, 255, 255, 0.2);
-    border-top: 8px solid #00ff7f; /* Couleur vive moderne */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1.2s linear infinite;
+.loader-bar-container {
+    width: 80%; /* Largeur de la barre */
+    max-width: 400px;
+    height: 12px; /* Épaisseur de la barre */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px; /* Bords arrondis */
+    overflow: hidden;
     margin-bottom: 20px;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.loader-bar {
+    height: 100%;
+    width: 0%; /* Commence vide */
+    background-color: #00ff7f; /* Couleur vive de la barre */
+    border-radius: 6px;
+    animation: fillBar 1.70s forwards ease-out; /* Animation de remplissage */
+}
+
+@keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
 }
 
 .loader p {
@@ -73,7 +81,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Plus sombre */
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: -1;
 }
 
@@ -81,7 +89,8 @@ body, html {
 video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* CHANGEMENT ICI : pour "dézoomer" */
+    background-color: #000; /* Fond noir pour les barres si object-fit: contain */
 }
 
 /* --- Menu Toggle (Hamburger) --- */
@@ -89,10 +98,10 @@ video {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 50; /* Au-dessus du contenu */
+    z-index: 50;
     background: none;
     border: none;
-    color: #00ff7f; /* Couleur vive */
+    color: #00ff7f;
     font-size: 2rem;
     cursor: pointer;
     padding: 10px;
@@ -110,17 +119,17 @@ video {
     right: 0;
     width: 250px;
     height: 100%;
-    background-color: rgba(26, 26, 46, 0.95); /* Fond semi-transparent moderne */
+    background-color: rgba(26, 26, 46, 0.95);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
     z-index: 40;
-    transform: translateX(100%); /* Masquée par défaut */
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation douce */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding-top: 80px;
     box-sizing: border-box;
 }
 
 .sidebar.open {
-    transform: translateX(0); /* Rendre visible */
+    transform: translateX(0);
 }
 
 .sidebar-nav ul {
@@ -143,7 +152,8 @@ video {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.sidebar-nav .nav-link:hover {
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active-link { /* Nouvelle classe pour l'état actif */
     background-color: #00ff7f;
     color: #1a1a2e;
 }
@@ -158,13 +168,12 @@ video {
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
-    position: relative; /* Pour z-index */
+    position: relative;
     z-index: 10;
 }
 
 /* Tab Content */
 .tab-content {
-    /* Styles pour les onglets, cachés par défaut ou par JS */
     transition: opacity 0.5s ease;
 }
 
@@ -174,12 +183,12 @@ video {
 
 /* Main Title Styling - Look plus épuré */
 .main-title {
-    font-size: 4rem; /* Légèrement réduit pour l'espace */
+    font-size: 4rem;
     font-weight: 700;
     margin: 0;
     letter-spacing: 3px;
-    color: #00ff7f; /* Couleur vive moderne */
-    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5); /* Effet néon subtil */
+    color: #00ff7f;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
 }
 
 /* Subtitle Styling */
@@ -201,6 +210,6 @@ video {
         font-size: 1rem;
     }
     .sidebar {
-        width: 200px; /* Plus petit sur mobile */
+        width: 200px;
     }
 }

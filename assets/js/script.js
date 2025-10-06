@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache le loader et affiche le contenu principal après le délai
     setTimeout(function() {
-        // Ajout d'une transition pour le fondu du loader
         loader.style.opacity = '0';
         
-        // Après la transition, on masque l'élément
         setTimeout(function() {
             loader.classList.add('hidden');
             mainContent.classList.remove('hidden');
@@ -26,9 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     menuToggle.addEventListener('click', function() {
         sidebar.classList.toggle('open');
-        // Optionnel: changer l'icône du hamburger en "X" si vous voulez
-        // this.querySelector('i').classList.toggle('fa-bars');
-        // this.querySelector('i').classList.toggle('fa-times');
     });
 
     // Fermer la sidebar si l'on clique en dehors (ou sur un lien)
@@ -46,12 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    // Fonction pour afficher le bon onglet
+    // Fonction pour afficher le bon onglet et activer le lien
     function showTab(targetId) {
         // Cacher tous les contenus d'onglet
         tabContents.forEach(tab => {
             tab.classList.add('hidden');
             tab.classList.remove('active');
+        });
+
+        // Désactiver tous les liens de navigation
+        navLinks.forEach(link => {
+            link.classList.remove('active-link');
         });
 
         // Afficher l'onglet cible
@@ -60,20 +60,24 @@ document.addEventListener('DOMContentLoaded', function() {
             activeTab.classList.remove('hidden');
             activeTab.classList.add('active');
         }
+
+        // Activer le lien correspondant dans la sidebar
+        const activeNavLink = document.querySelector(`.nav-link[data-tab="${targetId}"]`);
+        if (activeNavLink) {
+            activeNavLink.classList.add('active-link');
+        }
     }
 
     // Écouteurs d'événements pour les liens de navigation
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Empêche le changement de page
+            e.preventDefault();
             const target = this.dataset.tab;
             showTab(target);
             sidebar.classList.remove('open'); // Ferme la sidebar après la sélection
         });
     });
     
-    // Assurez-vous que le premier onglet est affiché au démarrage
-    if (tabContents.length > 0) {
-        showTab(tabContents[0].id);
-    }
+    // Afficher l'onglet "Hub" par défaut au démarrage
+    showTab('hub');
 });
