@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kaelan's Hub - Modern Portfolio Website">
-    <title>Kaelan | Modern</title>
+    <meta name="description" content="Awale Project - Modern Portfolio Website">
+    <title>Awale Project | Modern</title>
     
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
         <div class="loader-bar-container">
             <div class="loader-bar"></div>
         </div>
-        <p>Loading Kaelan...</p>
+        <p>Loading Awale Project...</p>
     </div>
 
     <div id="main-content" class="main-content-wrapper hidden">
@@ -45,15 +45,14 @@
                 <ul>
                     <li><a href="#" class="nav-link" data-tab="hub">Hub</a></li> 
                     <li><a href="#" class="nav-link" data-tab="pieds2marceau">Pieds2Marceau</a></li>
-                    <li><a href="#" class="nav-link" data-tab="credits">Credits</a></li>
-                    <li><a href="#" class="nav-link" data-tab="skills-booster">Skills booster</a></li>
+                    <li><a href="#" class="nav-link" data-tab="skills-booster">Skills Booster</a></li>
                 </ul>
             </nav>
         </aside>
 
         <div class="content" id="page-content">
             <div id="hub" class="tab-content active">
-                <h1 class="main-title">Kaelan's Hub</h1>
+                <h1 class="main-title">Awale Project</h1>
                 <p class="subtitle">Welcome to your main dashboard.</p>
             </div>
             
@@ -69,33 +68,79 @@
                 <h1 class="main-title hidden-on-special">Pieds2Marceau Activation</h1>
             </div>
             
-            <div id="credits" class="tab-content hidden credits-content">
-                <h1 class="page-title-credits main-title">CREDITS</h1>
-                
-                <div class="credit-container">
-                    
-                    <div class="credit-image-box">
-                        <img id="credit-photo" src="assets/images/estbn.png" alt="Protagonist's Photo" class="credit-photo" loading="lazy">
-                    </div>
-
-                    <div class="credit-separator"></div>
-
-                    <div class="credit-details">
-                        <h2 id="credit-name" class="credit-name">Esteban</h2>
-                        
-                        <p id="credit-description" class="credit-description">
-                            Esteban était en charge de la conception graphique initiale, de la gestion du design CSS de la sidebar et de l'intégration de la vidéo de fond.
-                        </p>
-                        
-                        <button id="next-credit" class="next-button">Next</button>
-                    </div>
-
-                </div>
-            </div>
-            
             <div id="skills-booster" class="tab-content hidden">
-                <h1 class="main-title">Skills Booster</h1>
-                <p class="subtitle">Boost your skills here.</p>
+                <div class="skills-container">
+                    <h1 class="main-title">Skills Booster</h1>
+                    <p class="subtitle">Développez vos compétences avec nos ressources</p>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-title">Développement</h3>
+                            <p class="skill-description">Maîtrisez les langages de programmation modernes et les frameworks les plus populaires.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3 class="skill-title">Design</h3>
+                            <p class="skill-description">Créez des interfaces utilisateur magnifiques et intuitives avec les dernières tendances.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="75"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="skill-title">Performance</h3>
+                            <p class="skill-description">Optimisez vos projets pour des performances maximales et une expérience fluide.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="skill-title">Mobile</h3>
+                            <p class="skill-description">Développez des applications mobiles réactives et adaptées à tous les appareils.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="80"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="skill-title">Backend</h3>
+                            <p class="skill-description">Construisez des APIs robustes et des systèmes backend performants et sécurisés.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="70"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="skill-title">Sécurité</h3>
+                            <p class="skill-description">Protégez vos applications avec les meilleures pratiques de sécurité web.</p>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="65"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
