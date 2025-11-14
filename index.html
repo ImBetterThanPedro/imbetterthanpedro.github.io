@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kaelan's Hub - Modern Portfolio Website">
     <title>Kaelan | Modern</title>
+    
+    <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/videos/kln_background.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/css/style.css" as="style">
+    
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -21,7 +30,7 @@
     <div id="main-content" class="main-content-wrapper hidden">
         <div class="video-background" id="default-video-bg">
             <div class="video-overlay"></div>
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="auto" poster="">
                 <source src="assets/videos/kln_background.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -52,7 +61,7 @@
                 <div class="special-background" id="pieds2marceau-bg"></div>
                 
                 <div class="video-frame">
-                    <video id="rick-video" class="rick-video" muted loop playsinline>
+                    <video id="rick-video" class="rick-video" muted loop playsinline preload="auto">
                         <source src="assets/videos/rick.mp4" type="video/mp4"> 
                         Your browser does not support the video tag.
                     </video>
@@ -66,7 +75,7 @@
                 <div class="credit-container">
                     
                     <div class="credit-image-box">
-                        <img id="credit-photo" src="assets/images/estbn.png" alt="Protagonist's Photo" class="credit-photo">
+                        <img id="credit-photo" src="assets/images/estbn.png" alt="Protagonist's Photo" class="credit-photo" loading="lazy">
                     </div>
 
                     <div class="credit-separator"></div>
@@ -91,6 +100,9 @@
         </div>
     </div>
 
+    <!-- Subtle background particles effect -->
+    <div class="particles-container" id="particles"></div>
+    
     <script src="assets/js/script.js"></script>
 </body>
 </html>
