@@ -18,28 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Éléments Pieds2Marceau
     const videoFrame = document.querySelector('.video-frame');
     const rickVideo = document.getElementById('rick-video');
-    let rickTimeout = null; 
-
-    // Éléments Credits
-    const creditPhoto = document.getElementById('credit-photo');
-    const creditName = document.getElementById('credit-name');
-    const creditDescription = document.getElementById('credit-description');
-    const nextButton = document.getElementById('next-credit');
-
-    // Protagonistes des crédits
-    const protagonists = [
-        {
-            name: "Esteban",
-            image: "assets/images/estbn.png",
-            description: "Esteban était en charge de la conception graphique initiale, de la gestion du design CSS de la sidebar et de l'intégration de la vidéo de fond."
-        },
-        {
-            name: "Raphaël",
-            image: "assets/images/rfl.png",
-            description: "Raphaël a principalement développé la logique JavaScript : le loader, la gestion des onglets, l'animation du Rickroll et la navigation entre les pages de crédits."
-        }
-    ];
-    let currentProtagonistIndex = 0;
+    let rickTimeout = null;
 
     // --- Performance: Preload videos ---
     function preloadVideos() {
@@ -139,56 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fonction de mise à jour des crédits avec animation améliorée
-    function updateCredits(index) {
-        const p = protagonists[index];
-        
-        // Smooth fade transition
-        if (creditPhoto) {
-            creditPhoto.style.transition = 'opacity 0.4s ease';
-            creditPhoto.style.opacity = '0';
-        }
-        if (creditName) {
-            creditName.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            creditName.style.opacity = '0';
-            creditName.style.transform = 'translateY(-10px)';
-        }
-        if (creditDescription) {
-            creditDescription.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            creditDescription.style.opacity = '0';
-            creditDescription.style.transform = 'translateY(10px)';
-        }
-        
-        setTimeout(() => {
-            if (creditPhoto) {
-                creditPhoto.src = p.image;
-                creditPhoto.style.opacity = '1';
+    // Fonction pour animer les barres de progression dans Skills Booster
+    function animateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            const progress = bar.getAttribute('data-progress');
+            if (progress) {
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 100);
             }
-            if (creditName) {
-                creditName.textContent = p.name;
-                creditName.style.opacity = '1';
-                creditName.style.transform = 'translateY(0)';
-            }
-            if (creditDescription) {
-                creditDescription.textContent = p.description;
-                creditDescription.style.opacity = '1';
-                creditDescription.style.transform = 'translateY(0)';
-            }
-
-            // Masquer le bouton "Next" sur le dernier élément
-            if (nextButton) {
-                if (index === protagonists.length - 1) {
-                    nextButton.style.display = 'none';
-                } else {
-                    nextButton.style.display = 'block';
-                    // Animation du bouton
-                    nextButton.style.animation = 'none';
-                    setTimeout(() => {
-                        nextButton.style.animation = 'pulse 0.5s ease';
-                    }, 10);
-                }
-            }
-        }, 400);
+        });
     }
 
     // Fonction principale pour afficher le bon onglet avec transitions fluides
@@ -222,10 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
             await fadeIn(activeTab, 300);
         }
 
-        // Logique spécifique à l'ouverture de l'onglet Credits
-        if (targetId === 'credits') {
-            currentProtagonistIndex = 0;
-            updateCredits(currentProtagonistIndex);
+        // Logique spécifique à l'ouverture de l'onglet Skills Booster
+        if (targetId === 'skills-booster') {
+            setTimeout(() => {
+                animateProgressBars();
+            }, 300);
         }
 
         // ********** LOGIQUE SPÉCIALE POUR PIEDS2MARCEAU **********
@@ -289,40 +230,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Écouteur d'événement pour le bouton "Next" des crédits avec animation
-    if (nextButton) {
-        nextButton.addEventListener('click', function() {
-            if (currentProtagonistIndex < protagonists.length - 1) {
-                currentProtagonistIndex++;
-                updateCredits(currentProtagonistIndex);
-                
-                // Button click animation
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            }
-        });
-    }
-
     // --- Keyboard Navigation Support ---
     document.addEventListener('keydown', function(e) {
         // ESC to close sidebar
         if (e.key === 'Escape' && sidebar.classList.contains('open')) {
             sidebar.classList.remove('open');
             menuToggle.style.transform = 'rotate(0deg)';
-        }
-        
-        // Arrow keys for credits navigation
-        const creditsTab = document.getElementById('credits');
-        if (!creditsTab.classList.contains('hidden')) {
-            if (e.key === 'ArrowRight' && currentProtagonistIndex < protagonists.length - 1) {
-                currentProtagonistIndex++;
-                updateCredits(currentProtagonistIndex);
-            } else if (e.key === 'ArrowLeft' && currentProtagonistIndex > 0) {
-                currentProtagonistIndex--;
-                updateCredits(currentProtagonistIndex);
-            }
         }
     });
 
@@ -344,15 +257,6 @@ document.addEventListener('DOMContentLoaded', function() {
     tabContents.forEach(tab => {
         observer.observe(tab);
     });
-
-    // --- Preload images for credits ---
-    function preloadCreditImages() {
-        protagonists.forEach(p => {
-            const img = new Image();
-            img.src = p.image;
-        });
-    }
-    preloadCreditImages();
 
     // --- Create subtle floating particles effect ---
     function createParticles() {
