@@ -4,150 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Awale Project - Modern Portfolio Website">
-    <title>Awale Project | Modern</title>
+    <title>Awale Project | Kylian Edition</title>
     
-    <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="assets/videos/kln_background.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/css/style.css" as="style">
-    
-    <!-- Fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Styles pour l'image de fond Kylian */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f0f; /* Fond sombre par défaut */
+        }
+
+        .kylian-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* L'image est ici */
+            background-image: url('kylian.png'); 
+            background-repeat: no-repeat;
+            background-position: center;
+            /* "contain" permet de voir toute l'image sans zoom. 
+               Change en "cover" si tu veux qu'elle remplisse tout l'écran */
+            background-size: contain; 
+            z-index: -2;
+        }
+
+        /* Overlay pour rendre le texte lisible */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Ajuste l'opacité ici (0.5 = 50%) */
+            z-index: -1;
+        }
+
+        /* Amélioration des cartes de skills */
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: white;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 200, 0.2);
+            border-color: #00ffc8;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #fff, #00ffc8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
+
+    <div class="kylian-bg"></div>
+    <div class="overlay"></div>
+
     <div id="loader" class="loader">
         <div class="loader-bar-container">
             <div class="loader-bar"></div>
         </div>
-        <p>Loading Awale Project...</p>
+        <p style="color: white; text-align: center; margin-top: 20px;">Chargement du projet...</p>
     </div>
 
-    <div id="main-content" class="main-content-wrapper hidden">
-        <div class="video-background" id="default-video-bg">
-            <div class="video-overlay"></div>
-            <video autoplay muted loop playsinline preload="auto" poster="">
-                <source src="assets/videos/kln_background.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+    <div id="main-content" class="main-content-wrapper">
+        
+        <button class="menu-toggle" id="menu-toggle">
             <i class="fas fa-bars"></i>
         </button>
 
         <aside class="sidebar" id="sidebar">
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="#" class="nav-link" data-tab="hub">Hub</a></li> 
-                    <li><a href="#" class="nav-link" data-tab="pieds2marceau">Pieds2Marceau</a></li>
-                    <li><a href="#" class="nav-link" data-tab="skills-booster">Skills Booster</a></li>
+                    <li><a href="#" class="nav-link" data-tab="hub"><i class="fas fa-home"></i> Hub</a></li> 
+                    <li><a href="#" class="nav-link" data-tab="skills-booster"><i class="fas fa-rocket"></i> Skills</a></li>
+                    <li><a href="https://github.com/" target="_blank" class="nav-link"><i class="fab fa-github"></i> GitHub</a></li>
                 </ul>
             </nav>
         </aside>
 
-        <div class="content" id="page-content">
-            <div id="hub" class="tab-content active">
+        <main class="content" id="page-content">
+            <section id="hub" class="tab-content">
                 <h1 class="main-title">Awale Project</h1>
-                <p class="subtitle">Welcome to your main dashboard.</p>
-            </div>
-            
-            <div id="pieds2marceau" class="tab-content hidden special-tab">
-                <div class="special-background" id="pieds2marceau-bg"></div>
-                
-                <div class="video-frame">
-                    <video id="rick-video" class="rick-video" muted loop playsinline preload="auto">
-                        <source src="assets/videos/rick.mp4" type="video/mp4"> 
-                        Your browser does not support the video tag.
-                    </video>
+                <p class="subtitle">Le futur du design, inspiré par Kylian.</p>
+                <div style="margin-top: 30px;">
+                    <button class="btn-primary" style="padding: 10px 25px; border-radius: 25px; border: none; background: #00ffc8; font-weight: bold; cursor: pointer;">Explorer</button>
                 </div>
-                <h1 class="main-title hidden-on-special">Pieds2Marceau Activation</h1>
-            </div>
+            </section>
             
-            <div id="skills-booster" class="tab-content hidden">
-                <div class="skills-container">
-                    <h1 class="main-title">Skills Booster</h1>
-                    <p class="subtitle">Développez vos compétences avec nos ressources</p>
-                    
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="skill-title">Développement</h3>
-                            <p class="skill-description">Maîtrisez les langages de programmation modernes et les frameworks les plus populaires.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="85"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-paint-brush"></i>
-                            </div>
-                            <h3 class="skill-title">Design</h3>
-                            <p class="skill-description">Créez des interfaces utilisateur magnifiques et intuitives avec les dernières tendances.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="75"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="skill-title">Performance</h3>
-                            <p class="skill-description">Optimisez vos projets pour des performances maximales et une expérience fluide.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="90"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h3 class="skill-title">Mobile</h3>
-                            <p class="skill-description">Développez des applications mobiles réactives et adaptées à tous les appareils.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="80"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3 class="skill-title">Backend</h3>
-                            <p class="skill-description">Construisez des APIs robustes et des systèmes backend performants et sécurisés.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="70"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-card">
-                            <div class="skill-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3 class="skill-title">Sécurité</h3>
-                            <p class="skill-description">Protégez vos applications avec les meilleures pratiques de sécurité web.</p>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-progress="65"></div>
-                            </div>
-                        </div>
+            <section id="skills-booster" class="tab-content hidden">
+                <h1 class="main-title">Skills Booster</h1>
+                <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px;">
+                    <div class="skill-card">
+                        <i class="fas fa-code fa-2x"></i>
+                        <h3>Développement</h3>
+                        <p>HTML5, CSS3, JS Modernes.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-bolt fa-2x"></i>
+                        <h3>Performance</h3>
+                        <p>Optimisation fluide et rapide.</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
-    <!-- Subtle background particles effect -->
-    <div class="particles-container" id="particles"></div>
-    
-    <script src="assets/js/script.js"></script>
+    <script>
+        // Script simple pour le loader et les onglets
+        window.addEventListener('load', () => {
+            document.getElementById('loader').style.display = 'none';
+        });
+
+        const links = document.querySelectorAll('.nav-link[data-tab]');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
